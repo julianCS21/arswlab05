@@ -10,6 +10,7 @@ import edu.eci.arsw.blueprints.model.Point;
 import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
 import edu.eci.arsw.blueprints.persistence.BlueprintPersistenceException;
 import edu.eci.arsw.blueprints.persistence.BlueprintsPersistence;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,8 @@ import java.util.Set;
  *
  * @author hcadavid
  */
-
+@Component
+@Primary
 public class InMemoryBlueprintPersistence implements BlueprintsPersistence {
 
     private final Map<Tuple<String, String>, Blueprint> blueprints = new HashMap<>();
