@@ -7,16 +7,31 @@ package edu.eci.arsw.blueprints.controllers;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
+
+import edu.eci.arsw.blueprints.model.Blueprint;
+import edu.eci.arsw.blueprints.persistence.BlueprintsPersistence;
+import edu.eci.arsw.blueprints.services.BlueprintsServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  *
  * @author hcadavid
  */
+@RestController
 public class BlueprintAPIController {
+
+
+    @Autowired
+    private BlueprintsServices bps;
+
+
+
+
+    @GetMapping("/blueprints")
+    public @ResponseBody Set<Blueprint> getBlueprints(){
+        return bps.getAllBluePrints();
+    }
     
     
     
