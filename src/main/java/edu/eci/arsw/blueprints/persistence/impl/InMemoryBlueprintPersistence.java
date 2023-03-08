@@ -22,8 +22,7 @@ import java.util.Set;
  *
  * @author hcadavid
  */
-@Component
-@Primary
+@Service
 public class InMemoryBlueprintPersistence implements BlueprintsPersistence {
 
     private final Map<Tuple<String, String>, Blueprint> blueprints = new HashMap<>();
@@ -31,9 +30,12 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence {
     public InMemoryBlueprintPersistence() {
         //load stub data
         Point[] pts = new Point[]{new Point(140, 140), new Point(115, 115)};
-        Blueprint bp = new Blueprint("_authorname_", "_bpname_ ", pts);
+        Blueprint bp = new Blueprint("julian",  "plano 1", pts);
+        Blueprint bp2 = new Blueprint("julian",  "plano 2", pts);
+        Blueprint bp3 = new Blueprint("camilo",  "plano 3", pts);
         blueprints.put(new Tuple<>(bp.getAuthor(), bp.getName()), bp);
-
+        blueprints.put(new Tuple<>(bp2.getAuthor(), bp2.getName()), bp2);
+        blueprints.put(new Tuple<>(bp3.getAuthor(), bp3.getName()), bp3);
     }
 
     @Override
@@ -63,9 +65,15 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence {
     }
 
 
-    public Set<Blueprint> getAllBlueprints(){
-        return (Set<Blueprint>) blueprints.values();
+    public Set<Blueprint> getAllBlueprints() {
+        Set<Blueprint> result = new HashSet<>();
+        Set<Tuple<String, String>> keys = blueprints.keySet();
+        for (Tuple<String, String> bp : keys) {
+            result.add(blueprints.get(bp));
+        }
+        return result;
     }
+
 
 
 }

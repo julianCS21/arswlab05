@@ -1,13 +1,15 @@
-package edu.eci.arsw.blueprints.persistence;
+package edu.eci.arsw.blueprints.persistence.impl;
 
 import edu.eci.arsw.blueprints.model.Blueprint;
 import edu.eci.arsw.blueprints.model.Point;
 import edu.eci.arsw.blueprints.persistence.filter;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+@Service
 public class subsamplingFilter implements filter {
 
     private List<Point> eliminateInterspersed(List<Point> points){
