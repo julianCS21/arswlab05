@@ -39,11 +39,12 @@ public interface BlueprintsPersistence {
 
 
 
-    public Set<Blueprint> getBlueprintsByAuthor(String author);
+    public Set<Blueprint> getBlueprintsByAuthor(String author) throws BlueprintNotFoundException;
 
 
     public Set<Blueprint> getAllBlueprints();
 
 
-    
+
+    Set<Blueprint> getBlueprintsByAuthorAndName(String Author, String Name) throws BlueprintNotFoundException;
 }

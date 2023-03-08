@@ -62,6 +62,11 @@ public class BlueprintsServices {
     }
 
 
+    public Set<Blueprint>  getBlueprintsByAuthorAndName(String Author,String Name) throws BlueprintNotFoundException {
+        return bpp.getBlueprintsByAuthorAndName(Author,Name);
+    }
+
+
 
     
 }

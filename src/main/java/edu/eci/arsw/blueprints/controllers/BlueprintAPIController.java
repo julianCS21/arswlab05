@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
  * @author hcadavid
  */
 @RestController
+@RequestMapping(value = "/blueprints")
 public class BlueprintAPIController {
 
 
@@ -33,10 +34,38 @@ public class BlueprintAPIController {
 
 
 
-    @GetMapping(path = "/blueprints", produces =  MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces =  MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getBlueprints() throws BlueprintNotFoundException {
-        Set<Blueprint> bp = bps.getAllBluePrints();
-        return new ResponseEntity<>(new Gson().toJson(bp), HttpStatus.OK);
+        Set<Blueprint> result = bps.getAllBluePrints();
+        return new ResponseEntity<>(new Gson().toJson(result), HttpStatus.OK);
+    }
+
+
+    @GetMapping(path = "/{author}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getBlueprintsByAuthor(@PathVariable String author){
+        try{
+            Set<Blueprint> result = bps.getBlueprintsByAuthor(author);
+            return new ResponseEntity<>(new Gson().toJson(result),HttpStatus.OK);
+        }
+        catch (BlueprintNotFoundException e){
+            return new ResponseEntity<>("no se encontro el plano de dicho autor",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping(path = "/{author}/{bpname}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getBlueprintByAuthorAndName(@PathVariable String author, @PathVariable String name){
+        try {
+            Set<Blueprint> result = bps.getBlueprintsByAuthorAndName(author,name);
+            if(result.size() > 0){
+                return new ResponseEntity<>(new Gson().toJson(result),HttpStatus.OK);
+            }
+            else{
+                return new ResponseEntity<>("no se encontro el plano con ese nombre",HttpStatus.NOT_FOUND);
+            }
+
+        } catch (BlueprintNotFoundException e) {
+            return new ResponseEntity<>("no se encontro el plano con ese nombre",HttpStatus.NOT_FOUND);
+        }
     }
     
     
