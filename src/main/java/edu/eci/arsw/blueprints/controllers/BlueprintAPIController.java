@@ -12,6 +12,7 @@ import java.util.List;
 import com.google.gson.Gson;
 import edu.eci.arsw.blueprints.model.Blueprint;
 import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
+import edu.eci.arsw.blueprints.persistence.BlueprintPersistenceException;
 import edu.eci.arsw.blueprints.persistence.BlueprintsPersistence;
 import edu.eci.arsw.blueprints.services.BlueprintsServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,15 +57,32 @@ public class BlueprintAPIController {
     public ResponseEntity<?> getBlueprintByAuthorAndName(@PathVariable String author, @PathVariable String name){
         try {
             Set<Blueprint> result = bps.getBlueprintsByAuthorAndName(author,name);
-            if(result.size() > 0){
-                return new ResponseEntity<>(new Gson().toJson(result),HttpStatus.OK);
-            }
-            else{
-                return new ResponseEntity<>("no se encontro el plano con ese nombre",HttpStatus.NOT_FOUND);
-            }
-
+            return new ResponseEntity<>(new Gson().toJson(result),HttpStatus.OK);
         } catch (BlueprintNotFoundException e) {
             return new ResponseEntity<>("no se encontro el plano con ese nombre",HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+    @PostMapping
+    public ResponseEntity<?> addBlueprint(@RequestBody  Blueprint newBp) throws BlueprintPersistenceException {
+        try{
+            bps.addNewBlueprint(newBp);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }catch (BlueprintPersistenceException e){
+            return new ResponseEntity<>("NO SE PUDO CREAR DICHO PLANO",HttpStatus.FORBIDDEN);
+
+        }
+    }
+
+
+    @PutMapping(path = "/{author}/{bpname}")
+    public ResponseEntity<?> updateBluePrint(@RequestBody Blueprint newBp, @PathVariable String author, @PathVariable String bpname){
+        try{
+            bps.updateBlueprint(newBp,author,bpname);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (BlueprintNotFoundException e) {
+            return new ResponseEntity<>("no se pudo actualizar el recurso",HttpStatus.BAD_REQUEST);
         }
     }
     
