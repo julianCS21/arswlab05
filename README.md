@@ -100,11 +100,23 @@ Del anterior diagrama de componentes (de alto nivel), se desprendió el siguient
 	
 
 	Nota: puede basarse en el formato jSON mostrado en el navegador al consultar una orden con el método GET.
+	
+![image](https://user-images.githubusercontent.com/96396177/223902290-22275feb-6fe5-411f-8bde-8a66b17589b2.png)
+
 
 
 3. Teniendo en cuenta el autor y numbre del plano registrado, verifique que el mismo se pueda obtener mediante una petición GET al recurso '/blueprints/{author}/{bpname}' correspondiente.
 
+![image](https://user-images.githubusercontent.com/96396177/223902378-b83306f5-2caf-4e81-953f-85a28436fb64.png)
+
+
 4. Agregue soporte al verbo PUT para los recursos de la forma '/blueprints/{author}/{bpname}', de manera que sea posible actualizar un plano determinado.
+
+![image](https://user-images.githubusercontent.com/96396177/223901913-f22a2996-850e-488f-9950-e7ed5e3c890a.png)
+
+
+![image](https://user-images.githubusercontent.com/96396177/223902030-49afcc1d-bdca-4b34-8ed1-413c03e84246.png)
+
 
 
 ### Parte III

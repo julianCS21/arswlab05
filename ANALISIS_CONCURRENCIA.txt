@@ -1,0 +1,9 @@
+¿Qué condiciones de carrera se podrían presentar?
+
+Se presenta cuando se crean blueprints iguales, ya que no se reconocen los elementos que están repetidos, también, al ingresar al tiempo se pueden interferir.
+
+¿Cuáles son las respectivas regiones críticas?
+
+Las regiones críticas se encuentran en añadir y eliminar blueprints.
+
+¿Solución a una alta concurrencia?
