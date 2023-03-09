@@ -3,6 +3,9 @@
 ### Arquitecturas de Software
 
 
+##Julian Castillo y Camilo Cantillo
+
+
 
 #### API REST para la gestión de planos.
 
