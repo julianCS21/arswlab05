@@ -3,7 +3,7 @@
 ### Arquitecturas de Software
 
 
-##Julian Castillo y Camilo Cantillo
+## Julian Castillo y Camilo Cantillo
 
 
 
