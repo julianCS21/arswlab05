@@ -5,6 +5,8 @@
 
 ## Julian Castillo y Camilo Cantillo
 
+Recomendación usar java 17
+
 
 
 #### API REST para la gestión de planos.
